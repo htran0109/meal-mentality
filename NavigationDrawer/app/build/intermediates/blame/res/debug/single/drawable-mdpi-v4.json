@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/res/merged/debug/drawable-mdpi-v4/ic_launcher.png",
+        "source": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/src/main/res/drawable-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/res/merged/debug/drawable-mdpi-v4/drawer_shadow.9.png",
+        "source": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/src/main/res/drawable-mdpi/drawer_shadow.9.png"
+    },
+    {
+        "merged": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/res/merged/debug/drawable-mdpi-v4/ic_drawer.png",
+        "source": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/src/main/res/drawable-mdpi/ic_drawer.png"
+    },
+    {
+        "merged": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/res/merged/debug/drawable-mdpi-v4/action_search.png",
+        "source": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/src/main/res/drawable-mdpi/action_search.png"
+    }
+]

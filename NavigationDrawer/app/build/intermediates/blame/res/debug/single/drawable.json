@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/res/merged/debug/drawable/uranus.jpg",
+        "source": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/src/main/res/drawable/uranus.jpg"
+    },
+    {
+        "merged": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/res/merged/debug/drawable/jupiter.jpg",
+        "source": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/src/main/res/drawable/jupiter.jpg"
+    },
+    {
+        "merged": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/res/merged/debug/drawable/neptune.jpg",
+        "source": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/src/main/res/drawable/neptune.jpg"
+    },
+    {
+        "merged": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/res/merged/debug/drawable/mercury.jpg",
+        "source": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/src/main/res/drawable/mercury.jpg"
+    },
+    {
+        "merged": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/res/merged/debug/drawable/venus.jpg",
+        "source": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/src/main/res/drawable/venus.jpg"
+    },
+    {
+        "merged": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/res/merged/debug/drawable/mars.jpg",
+        "source": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/src/main/res/drawable/mars.jpg"
+    },
+    {
+        "merged": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/res/merged/debug/drawable/earth.jpg",
+        "source": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/src/main/res/drawable/earth.jpg"
+    },
+    {
+        "merged": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/res/merged/debug/drawable/saturn.jpg",
+        "source": "/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/src/main/res/drawable/saturn.jpg"
+    }
+]

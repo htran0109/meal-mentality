@@ -1,0 +1,12 @@
+<TextView
+    android:background="?android:attr/activatedBackgroundIndicator"
+    android:gravity="center_vertical"
+    android:id="@android:id/text1"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+    android:textColor="#fff"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">meal-mentality</string>
     <string name="action_settings">Settings</string>
+    <string-array name="drawer_array">
+        <item>Plan Information</item>
+        <item>History</item>
+        <item>New Plan</item>
+        <item>Settings</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 </resources>

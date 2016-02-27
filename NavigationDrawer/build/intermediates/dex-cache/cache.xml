@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-21.0.3_d4ef6437c5ceba7284b9320aaa3b15902353eda0.jar" />
+    </item>
+    <item
+        jar="/home/chirag/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3_577574317e44efaf4a072bd65a710cfa2438e5cb.jar" />
+    </item>
+    <item
+        jar="/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/home/chirag/Documents/webdev/mealmentality/NavigationDrawer/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3_ab82ce639efeca3264074a5cd4e18becfa15d2b3.jar" />
+    </item>
+
+</items>
