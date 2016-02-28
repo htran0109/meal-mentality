@@ -6,10 +6,7 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
+
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
@@ -55,7 +52,7 @@ public class MealPlanner {
 		}
 	}
 
-
+/*
 	void processFinish(String response){
 
 
@@ -78,7 +75,7 @@ public class MealPlanner {
 				carbohydrate, fat);
 
 	}
-
+*/
 
 	class GetHTTP extends AsyncTask<String, Void, String> {
 		private static final String TAG2 = "CardListActivity";
@@ -116,7 +113,7 @@ public class MealPlanner {
 
 		protected void onPostExecute(String page)
 		{
-			processFinish(page);
+			//processFinish(page);
 		}
 	}
 

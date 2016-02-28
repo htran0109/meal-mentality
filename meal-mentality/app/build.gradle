@@ -25,7 +25,7 @@ android {
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
@@ -33,5 +33,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:21.0.+'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
     //    compile files('/home/chirag/Documents/webdev/mealmentality/meal-mentality/libs/unirest-java-1.4.9-SNAPSHOT-withDependency-ShadedForAndroid.jar')
-    compile files('/home/chirag/Documents/webdev/mealmentality/meal-mentality/libs/picasso-2.5.2.jar')
+    compile files('C:/Users/Hung/Documents/meal-mentality/meal-mentality/libs/picasso-2.5.2.jar')
 }

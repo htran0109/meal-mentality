@@ -14,7 +14,7 @@ import java.util.Calendar;
  */
 public class QuestionFragment extends Fragment {
 
-    private CardArrayAdapter cardArrayAdapter;
+    private QuestionArrayAdapter questArrayAdapter;
     private ListView listView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,8 +24,19 @@ public class QuestionFragment extends Fragment {
 
 
         listView = (ListView) rootView.findViewById(R.id.card_listView);
+        questArrayAdapter = new QuestionArrayAdapter(getActivity(), R.layout.listviewitem);
 
-
+        for (int i = 0; i < 10; i++) {
+            if(i%2==0) {
+                Question card = new Question("NUM", "Hello World?");
+                questArrayAdapter.add(card);
+            }
+            else {
+                Question card = new Question("YN", "Hello World?");
+                questArrayAdapter.add(card);
+            }
+        }
+        listView.setAdapter(questArrayAdapter);
         return rootView;
     }
 }
