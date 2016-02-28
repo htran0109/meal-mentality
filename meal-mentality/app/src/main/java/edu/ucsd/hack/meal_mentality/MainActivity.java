@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /* The click listner for ListView in the navigation drawer */
+    /* The click listener for ListView in the navigation drawer */
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
-        if (position == 2){
+        if (position == 0){
 //            Intent intent = new Intent(this, CardListActivity.class);
 //            startActivity(intent);
 
@@ -113,7 +113,13 @@ public class MainActivity extends AppCompatActivity {
 
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        } else if (position == 1){
+            android.app.Fragment fragment = new QuestionFragment();
+
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
         }
+
 
         // update selected item and title, then close the drawer
         mDrawerList.setItemChecked(position, true);

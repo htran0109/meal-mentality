@@ -7,12 +7,22 @@ package edu.ucsd.hack.meal_mentality;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +36,7 @@ public class CardArrayAdapter  extends ArrayAdapter<Food> {
         TextView line2;
         TextView line3;
         TextView line4;
+        ImageView line5;
     }
 
     public CardArrayAdapter(Context context, int textViewResourceId) {
@@ -60,6 +71,7 @@ public class CardArrayAdapter  extends ArrayAdapter<Food> {
             viewHolder.line2 = (TextView) row.findViewById(R.id.date);
             viewHolder.line3 = (TextView) row.findViewById(R.id.name);
             viewHolder.line4 = (TextView) row.findViewById(R.id.name_calories);
+            viewHolder.line5 = (ImageView) row.findViewById(R.id.foodImage);
             row.setTag(viewHolder);
         } else {
             viewHolder = (CardViewHolder)row.getTag();
@@ -72,10 +84,15 @@ public class CardArrayAdapter  extends ArrayAdapter<Food> {
         viewHolder.line3.setText(card.name);
         viewHolder.line4.setText(card.calories + " calories");
 
+        Picasso.with(getContext()).load(card.url).into(viewHolder.line5);
+
 
 
         return row;
     }
+
+
+
 
     public Bitmap decodeToBitmap(byte[] decodedByte) {
         return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);

@@ -1,5 +1,8 @@
 package edu.ucsd.hack.meal_mentality;
 
+import android.util.Log;
+
+import java.net.URL;
 import java.util.Calendar;
 
 public class Food {
@@ -10,8 +13,9 @@ public class Food {
 	public int fat;
 	public String timeOfDay;
 	public Calendar date;
+	public String url;
 
-	public Food(String name, String timeOfDay, int calories, int protein, int carbohydrate, int fat, Calendar date) {
+	public Food(String name, String timeOfDay, int calories, int protein, int carbohydrate, int fat, Calendar date, String url) {
 		this.timeOfDay = timeOfDay;
 		this.name = name;
 		this.calories = calories;
@@ -19,5 +23,6 @@ public class Food {
 		this.carbohydrate = carbohydrate;
 		this.fat = fat;
 		this.date = date;
+		this.url = url;
 	}
 }

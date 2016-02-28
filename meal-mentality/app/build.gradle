@@ -10,6 +10,7 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -17,7 +18,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
+
+
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -26,5 +31,7 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:cardview-v7:21.0.+'
     compile 'com.android.support:recyclerview-v7:21.0.+'
-
+    compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
+    //    compile files('/home/chirag/Documents/webdev/mealmentality/meal-mentality/libs/unirest-java-1.4.9-SNAPSHOT-withDependency-ShadedForAndroid.jar')
+    compile files('/home/chirag/Documents/webdev/mealmentality/meal-mentality/libs/picasso-2.5.2.jar')
 }
