@@ -18,7 +18,7 @@ public class QuestionFragment extends Fragment {
     private ListView listView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                            Bundle savedInstanceState ){
+                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         android.view.View rootView = inflater.inflate(R.layout.listview, container, false);
 
@@ -26,16 +26,22 @@ public class QuestionFragment extends Fragment {
         listView = (ListView) rootView.findViewById(R.id.card_listView);
         questArrayAdapter = new QuestionArrayAdapter(getActivity(), R.layout.listviewitem);
 
-        for (int i = 0; i < 10; i++) {
-            if(i%2==0) {
-                Question card = new Question("NUM", "Hello World?");
-                questArrayAdapter.add(card);
-            }
-            else {
-                Question card = new Question("YN", "Hello World?");
-                questArrayAdapter.add(card);
-            }
-        }
+
+        Question card = new Question("YN", "Do you lose concentration? Do you become tired easily?");
+        questArrayAdapter.add(card);
+        card = new Question("YN", "Do unwelcome thoughts or images repeatedly enter your mind that you can’t control?");
+        questArrayAdapter.add(card);
+        card = new Question("YN", "Have you ever had periodic states of extreme sadness?");
+        questArrayAdapter.add(card);
+        card = new Question("NUM", "How long, on average, do you sleep in a night?");
+        questArrayAdapter.add(card);
+        card = new Question("NUM", "Do you think that a majority of people in the world disagree with you in an argument?");
+        questArrayAdapter.add(card);
+        card = new Question("YN", "Are you sleeping less or eating more than you normally would?");
+        questArrayAdapter.add(card);
+
+
+
         listView.setAdapter(questArrayAdapter);
         return rootView;
     }
