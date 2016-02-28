@@ -9,8 +9,6 @@ public class Food {
 	public int carbohydrate;
 	public int fat;
 	public String timeOfDay;
-
-
 	public Calendar date;
 
 	public Food(String name, String timeOfDay, int calories, int protein, int carbohydrate, int fat, Calendar date) {

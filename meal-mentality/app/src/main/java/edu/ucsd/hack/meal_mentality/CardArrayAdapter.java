@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class CardArrayAdapter  extends ArrayAdapter<Food> {
     static class CardViewHolder {
         TextView line1;
         TextView line2;
+        TextView line3;
+        TextView line4;
     }
 
     public CardArrayAdapter(Context context, int textViewResourceId) {
@@ -51,17 +54,26 @@ public class CardArrayAdapter  extends ArrayAdapter<Food> {
         CardViewHolder viewHolder;
         if (row == null) {
             LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.list_item_card, parent, false);
+            row = inflater.inflate(R.layout.listviewitem, parent, false);
             viewHolder = new CardViewHolder();
-            viewHolder.line1 = (TextView) row.findViewById(R.id.line1);
-            viewHolder.line2 = (TextView) row.findViewById(R.id.line2);
+            viewHolder.line1 = (TextView) row.findViewById(R.id.timeOfDay);
+            viewHolder.line2 = (TextView) row.findViewById(R.id.date);
+            viewHolder.line3 = (TextView) row.findViewById(R.id.name);
+            viewHolder.line4 = (TextView) row.findViewById(R.id.name_calories);
             row.setTag(viewHolder);
         } else {
             viewHolder = (CardViewHolder)row.getTag();
         }
         Food card = getItem(position);
-        viewHolder.line1.setText(card. );
-        viewHolder.line2.setText(card. );
+        viewHolder.line1.setText(card.timeOfDay);
+
+        SimpleDateFormat format1 = new SimpleDateFormat("EEEE, d MMM yyyy");
+        viewHolder.line2.setText(format1.format(card.date.getTime()));
+        viewHolder.line3.setText(card.name);
+        viewHolder.line4.setText(card.calories + " calories");
+
+
+
         return row;
     }
 

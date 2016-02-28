@@ -16,7 +16,6 @@
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="4dp"
         app:cardElevation="4dp"
-        card_view:cardBackgroundColor="@android:color/white"
         card_view:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -29,7 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp"
-                android:textColor="#808080">
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
 
                 <TextView
                     android:id="@+id/timeOfDay"
@@ -37,6 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="Lunch"
+                    android:textColor="#808080"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -46,7 +47,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="Saturday, 2/26/2016"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textColor="#808080"/>
 
             </RelativeLayout>
 
@@ -57,6 +59,7 @@
                 android:background="#d3d3d3" />
 
             <ImageView
+                android:padding="15dp"
                 android:id="@+id/foodImage"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -67,23 +70,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp"
-                android:textColor="#808080">
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
 
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:text="Classic Grilled Hamburger"
+                    android:text="Classic Grillwrfed Hamburger"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"/>
 
                 <TextView
+                    android:id="@+id/name_calories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="200 calories"
-                    android:textSize="18sp" />
+                    android:maxLines="1"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"/>
 
 
 
@@ -92,7 +100,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:textColor="#808080">
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
 
                 <TextView
                     android:id="@+id/drink"
@@ -101,14 +110,17 @@
                     android:layout_alignParentLeft="true"
                     android:text="Water"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="0 calories"
-                    android:textSize="18sp" />
+                    android:maxLines="1"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"/>
 
 
 
