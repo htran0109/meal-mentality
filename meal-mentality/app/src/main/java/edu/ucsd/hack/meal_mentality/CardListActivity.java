@@ -59,58 +59,9 @@ public class CardListActivity extends Fragment  {
 
 
     public void setupList(){
-        String deets = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?excludeIngredients=coconut%2C+mango&includeIngredients=onions%2C+lettuce%2C+tomato&intolerances=peanut%2C+shellfish&limitLicense=false&maxCalories=1500&maxCarbs=100&maxFat=100&maxProtein=100&minCalories=150&minCarbs=5&minFat=5&minProtein=5&number=1&offset=0&query=burger&ranking=1&type=main+course";
-        new GetHTTP().execute(deets);
+
 
     }
-
-    void processFinish(String output){
-
-        Log.d(CardListActivity.TAG, "Printing result " + output.toString());
-
-    }
-
-
-    class GetHTTP extends AsyncTask<String, Void, String> {
-        private static final String TAG2 = "CardListActivity";
-
-
-        @Override
-        protected String doInBackground(String... params) {
-            String answer = "";
-            Log.d(TAG2, "made it to beginning");
-            try {
-                String val = params[0];
-                URL url = new URL(val);
-
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestProperty("X-Mashape-Key", "unjCf6sRtXmshg2zKOJM5hWAm6HZp1kw7qbjsn8tlrzAmAwNnX");
-                try {
-                    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                    java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");
-                    answer = s.hasNext() ? s.next() : "";
-                } finally {
-                    urlConnection.disconnect();
-                }
-
-                Log.d(TAG2, "made it to beginning");
-
-            }catch (Exception e){
-                Log.d(TAG2, "Error with httpresponse " + e.getMessage());
-            }
-            Log.d(TAG2, "made it to beginning");
-
-
-            return answer;
-        }
-
-
-        protected void onPostExecute(String page)
-        {
-            processFinish(page);
-        }
-    }
-
 
 }
 
