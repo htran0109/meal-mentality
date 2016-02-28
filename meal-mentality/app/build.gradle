@@ -33,5 +33,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:21.0.+'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
     //    compile files('/home/chirag/Documents/webdev/mealmentality/meal-mentality/libs/unirest-java-1.4.9-SNAPSHOT-withDependency-ShadedForAndroid.jar')
-    compile files('/home/chirag/Documents/webdev/mealmentality/meal-mentality/libs/picasso-2.5.2.jar')
+    compile files('../libs/picasso-2.5.2.jar')
 }

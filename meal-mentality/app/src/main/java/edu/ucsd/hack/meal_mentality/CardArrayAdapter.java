@@ -31,7 +31,7 @@ public class CardArrayAdapter  extends ArrayAdapter<Food> {
     private static final String TAG = "CardArrayAdapter";
     private List<Food> cardList = new ArrayList<Food>();
 
-    static class CardViewHolder {
+    private class CardViewHolder {
         TextView line1;
         TextView line2;
         TextView line3;
