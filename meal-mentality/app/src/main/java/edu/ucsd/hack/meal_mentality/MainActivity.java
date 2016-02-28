@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-        } else if (position == 2){
+        } else if (position == 1){
             android.app.Fragment fragment = new QuestionFragment();
 
             FragmentManager fragmentManager = getFragmentManager();
