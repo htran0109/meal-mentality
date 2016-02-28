@@ -34,7 +34,6 @@ import java.util.List;
 
 public class CardListActivity extends Fragment {
 
-    public static boolean makeNew = false;
     private static final String TAG = "CardListActivity";
     private CardArrayAdapter cardArrayAdapter;
     private ListView listView;
@@ -63,8 +62,22 @@ public class CardListActivity extends Fragment {
 
         // These code snippets use an open-source library.
 
-        if (!reloadData())
+        Bundle bundle = this.getArguments();
+        boolean restart = bundle.getBoolean("restart");
+        setupList();
+        if (restart == false)
             setupList();
+        else {
+            try {
+                restart = reloadData();
+                if (!restart)
+                    setupList();
+            } catch (Exception e) {
+                Log.d("DEBUG", "DATA LOADING FAILED");
+            }
+
+        }
+
 
 //        for (int i = 0; i < 10; i++) {
 //            v.set(2016, 2, i + 1);
@@ -79,8 +92,9 @@ public class CardListActivity extends Fragment {
     public void setupList() {
         mp = new ArrayList<>();
         MealPlanner ma = new MealPlanner(cardArrayAdapter);
-        ma.designMealPlan(2000, 0);
+        ma.designMealPlan(1800, 0);
         mp.add(ma);
+
 
 
         //arr = new MealPlanner(cardArrayAdapter).designMealPlan(2000, 0);
@@ -88,8 +102,16 @@ public class CardListActivity extends Fragment {
         //newList = Arrays.asList(arr);
         //list.addAll(newList);
 
+    }
+
+    public void onPause(){
+        super.onPause();
+        Log.d("DEBUG", "Closing");
+        close();
 
     }
+
+
 
     public Serializable close() {
         list = new ArrayList<>();
@@ -119,10 +141,7 @@ public class CardListActivity extends Fragment {
     }
 
     public boolean reloadData(){
-        if(makeNew) {
-            makeNew = false;
-            return false;
-        }
+
         mp = new ArrayList<>();
         list = new ArrayList<>();
         try {
@@ -148,8 +167,8 @@ public class CardListActivity extends Fragment {
         Log.d("DEBUG", "BEING CALLED");
 
         MealPlanner mi = new MealPlanner(cardArrayAdapter);
-        for (int i = 0; i < li.size() / 3; i++) {
-            for (int j = 0; j < 3; j++)
+        for (int i = 0; i < li.size() / 6; i++) {
+            for (int j = 0; j < 6; j++)
                 mi.add(li.get(j));
             mp.add(mi);
             mi = new MealPlanner(cardArrayAdapter);

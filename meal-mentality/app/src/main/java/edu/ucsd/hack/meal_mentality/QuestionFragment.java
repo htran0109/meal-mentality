@@ -1,6 +1,7 @@
 package edu.ucsd.hack.meal_mentality;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ public class QuestionFragment extends Fragment {
 
     private QuestionArrayAdapter questArrayAdapter;
     private ListView listView;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,15 +38,35 @@ public class QuestionFragment extends Fragment {
         questArrayAdapter.add(card);
         card = new Question("NUM", "How long, on average, do you sleep in a night?");
         questArrayAdapter.add(card);
-        card = new Question("NUM", "Do you think that a majority of people in the world disagree with you in an argument?");
+        card = new Question("YN", "Do you think that a majority of people in the world disagree with you in an argument?");
         questArrayAdapter.add(card);
         card = new Question("YN", "Are you sleeping less or eating more than you normally would?");
         questArrayAdapter.add(card);
 
-        final Button button = (Button) rootView.findViewById(R.id.button);
+        card = new Question("NUM", "What is your weight?");
+        questArrayAdapter.add(card);
+        card = new Question("NUM", "What is your height?");
+        questArrayAdapter.add(card);
+        card = new Question("NUM", "What is your age?");
+        questArrayAdapter.add(card);
+        card = new Question("NUM", "How many calories do you eat per day?");
+        questArrayAdapter.add(card);
+
+        LayoutInflater inf = LayoutInflater.from(getActivity());
+        View v = inf.inflate(R.layout.footer, null);
+        Button button = (Button) v.findViewById(R.id.footer);
+        listView.addFooterView(v);
+
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                CardListActivity.makeNew = true;
+                CardListActivity car = new CardListActivity();
+                android.app.Fragment fragment = car;
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("restart", false);
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
             }
         });
 

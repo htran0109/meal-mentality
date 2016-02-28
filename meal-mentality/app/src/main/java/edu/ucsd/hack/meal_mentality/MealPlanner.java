@@ -21,15 +21,12 @@ public class MealPlanner implements Serializable {
     private CardArrayAdapter cardArrayAdapter;
     int index;
 
-    public static final int BREAKFAST = 0;
-    public static final int LUNCH = 1;
-    public static final int DINNER = 2;
 
     private Calendar vals;
     private int date;
 
     public MealPlanner(CardArrayAdapter car) {
-        meals = new Food[3];
+        meals = new Food[6];
         cardArrayAdapter = car;
         index = 0;
     }
@@ -53,6 +50,10 @@ public class MealPlanner implements Serializable {
     //0 is first day, tomorrow
     public Food[] designMealPlan(int calories, int day) {
         this.date = day;
+        designMeal(calories * 20 / 100, "breakfast");
+        designMeal(calories * 40 / 100, "main+course");
+        designMeal(calories * 40 / 100, "main+course");
+
         designMeal(calories * 20 / 100, "breakfast");
         designMeal(calories * 40 / 100, "main+course");
         designMeal(calories * 40 / 100, "main+course");
@@ -90,12 +91,10 @@ public class MealPlanner implements Serializable {
                         firstResult.getString("fat").length() - 1));
                 String url = firstResult.getString("image");
 
-                System.out.println(myObj);
-                System.out.println(firstTitle);
 
                 String mealType;
-                if (index == 0) mealType = "Breakfast";
-                else if (index == 1) mealType = "Lunch";
+                if (index%3 == 0) mealType = "Breakfast";
+                else if (index%3 == 1) mealType = "Lunch";
                 else mealType = "Dinner";
 
                 vals = Calendar.getInstance();
@@ -133,7 +132,6 @@ public class MealPlanner implements Serializable {
                 } finally {
                     urlConnection.disconnect();
                 }
-
                 Log.d(TAG2, "made it to beginning");
 
             } catch (Exception e) {
