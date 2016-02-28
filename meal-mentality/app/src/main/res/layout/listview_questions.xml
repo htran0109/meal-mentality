@@ -11,9 +11,20 @@
     <ListView
         android:id="@+id/card_listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="515dp"
         android:listSelector="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@null"
-        android:dividerHeight="10dp" />
+        android:dividerHeight="10dp"
+
+    />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal" />
+
+
 </LinearLayout>

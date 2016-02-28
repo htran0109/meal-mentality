@@ -34,6 +34,7 @@ import java.util.List;
 
 public class CardListActivity extends Fragment {
 
+    public static boolean makeNew = false;
     private static final String TAG = "CardListActivity";
     private CardArrayAdapter cardArrayAdapter;
     private ListView listView;
@@ -76,7 +77,7 @@ public class CardListActivity extends Fragment {
 
 
     public void setupList() {
-
+        mp = new ArrayList<>();
         MealPlanner ma = new MealPlanner(cardArrayAdapter);
         ma.designMealPlan(2000, 0);
         mp.add(ma);
@@ -118,6 +119,10 @@ public class CardListActivity extends Fragment {
     }
 
     public boolean reloadData(){
+        if(makeNew) {
+            makeNew = false;
+            return false;
+        }
         mp = new ArrayList<>();
         list = new ArrayList<>();
         try {

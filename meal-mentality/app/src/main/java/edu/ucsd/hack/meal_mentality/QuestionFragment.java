@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.Calendar;
@@ -20,7 +21,7 @@ public class QuestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        android.view.View rootView = inflater.inflate(R.layout.listview, container, false);
+        android.view.View rootView = inflater.inflate(R.layout.listview_questions, container, false);
 
 
         listView = (ListView) rootView.findViewById(R.id.card_listView);
@@ -40,7 +41,12 @@ public class QuestionFragment extends Fragment {
         card = new Question("YN", "Are you sleeping less or eating more than you normally would?");
         questArrayAdapter.add(card);
 
-
+        final Button button = (Button) rootView.findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                CardListActivity.makeNew = true;
+            }
+        });
 
         listView.setAdapter(questArrayAdapter);
         return rootView;
