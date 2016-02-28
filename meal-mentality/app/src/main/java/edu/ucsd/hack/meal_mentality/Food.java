@@ -2,10 +2,11 @@ package edu.ucsd.hack.meal_mentality;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Calendar;
 
-public class Food {
+public class Food implements Serializable{
 	public String name;
 	public int calories;
 	public int protein;

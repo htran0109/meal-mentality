@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
 
-
+    private CardListActivity car;
 
 
     @Override
@@ -109,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
 //            Intent intent = new Intent(this, CardListActivity.class);
 //            startActivity(intent);
 
-            android.app.Fragment fragment = new CardListActivity();
+
+            car = new CardListActivity();
+            android.app.Fragment fragment = car;
 
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
@@ -152,5 +156,29 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+        savedInstanceState.putSerializable("data", car.close());
+        // etc.
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore UI state from the savedInstanceState.
+        // This bundle has also been passed to onCreate.
+        //Log.d("DEBUG", "restarting");
+       // ArrayList<Food> list = (ArrayList<Food>) savedInstanceState.getSerializable("data");
+        //car.restart(list);
+
+    }
+
+    public void onPause(){
+        super.onPause();
+        car.close();
+
+    }
 
 }
