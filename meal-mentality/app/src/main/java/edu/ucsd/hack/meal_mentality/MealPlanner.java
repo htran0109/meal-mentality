@@ -1,7 +1,6 @@
 package edu.ucsd.hack.meal_mentality;
 
 import android.os.AsyncTask;
-import android.os.Parcelable;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -21,7 +20,19 @@ public class MealPlanner implements Serializable {
     private CardArrayAdapter cardArrayAdapter;
     int index;
 
+    // Nutrition ranges
+    private double minMult = 0.6;   // Minimum nutrient multiplier
+    private double maxMult = 1.2;   // Maximum nutrient multiplier
+    private double calorieBreakfastMult = 0.2;
+    private double calorieLunchMult = 0.45;
+    private double calorieDinnerMult = 0.35;
 
+    //Food API Integration
+    String APIbase = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" +
+            "searchComplex?";
+    String APIKey = "unjCf6sRtXmshg2zKOJM5hWAm6HZp1kw7qbjsn8tlrzAmAwNnX";
+    String
+    
     private Calendar vals;
     private int date;
 
@@ -31,35 +42,70 @@ public class MealPlanner implements Serializable {
         index = 0;
     }
 
-    public void designMeal(int calories, String mealType) {
-        String searchURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?&maxCalories="
-                + (int) (calories * (1.25))
-                //+ "&maxCarbs=100&maxFat=100&maxProtein=100
+
+    public void designMeal(double calories, int carbs, int protein, int fat, String mealType) {
+        String searchURL = APIbase
+                // Maximum nutrients
+                + "&maxCalories="
+                + (int) (calories * maxMult)
+                + "&maxCarbs="
+                + (int) (carbs * maxMult)
+                + "&maxFat=100"
+                + (int) (fat * maxMult)
+                + "&maxProtein=100"
+                + (int) (protein * maxMult)
+
+                //Minimum nutrients
                 + "&minCalories="
-                + (int) (calories / 1.5)
+                + (int) (calories * minMult)
                 //+ "&minCarbs=5&minFat=5&minProtein=5" +
                 + "&number=1&offset=0&ranking=1&type="
                 + mealType;
 
+                //Intolerances, possible values are:
+                // dairy, egg, gluten, peanut, sesame, seafood, shellfish,
+                // soy, sulfite, tree nut, and wheat.
+
         Log.d("JSON", "executing JSON Request");
         new GetHTTP().execute(searchURL);
-
-
     }
 
-    //0 is first day, tomorrow
-    public Food[] designMealPlan(int calories, int day) {
+    /**
+     * Generates a meal plan for a given day considering the target nutritional values,
+     * saving the completed Food objects into the meals array.
+     * Delegates to designMeal, which calls the Food API.
+     * Days are zero-indexed, with 0 being this day.
+     * 
+     * @param calories  The total target calories per day
+     * @param carbs     Total target carbs per day
+     * @param protein   Total target protein per day
+     * @param day       The day to generate a plan for
+     * @return          The generated meals in an array
+     */
+    public Food[] designMealPlan(int calories, int carbs, int protein, int day) {
         this.date = day;
-        designMeal(calories * 20 / 100, "breakfast");
-        designMeal(calories * 40 / 100, "main+course");
-        designMeal(calories * 40 / 100, "main+course");
+        //Design first choices
+        designMeal(calories * calorieBreakfastMult, carbs, protein, "breakfast");
+        designMeal(calories * calorieLunchMult, carbs, protein, "main+course");
+        designMeal(calories * calorieDinnerMult, carbs, protein, "main+course");
 
-        designMeal(calories * 20 / 100, "breakfast");
-        designMeal(calories * 40 / 100, "main+course");
-        designMeal(calories * 40 / 100, "main+course");
+        // Design second choices
+        designMeal(calories * calorieBreakfastMult, carbs, protein, "breakfast");
+        designMeal(calories * calorieLunchMult, carbs, protein, "main+course");
+        designMeal(calories * calorieDinnerMult, carbs, protein, "main+course");
         return meals;
     }
 
+    /**
+     * Wrapper for full designMealPlan method, for current compatibility.
+     * @param calories  Target calories per day
+     * @param day       The day to generate a plan for
+     * @return          The generated meals in an array
+     */
+    public Food[] designMealPlan(int calories, int day) {
+        return designMealPlan(calories, 150 /* carbs */, 48 /* protein */, day);
+    }
+    
     void add(Food i){
         meals[index] = i;
         cardArrayAdapter.add(meals[index++]);
@@ -124,7 +170,7 @@ public class MealPlanner implements Serializable {
                 URL url = new URL(val);
 
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestProperty("X-Mashape-Key", "unjCf6sRtXmshg2zKOJM5hWAm6HZp1kw7qbjsn8tlrzAmAwNnX");
+                urlConnection.setRequestProperty("X-Mashape-Key", APIKey);
                 try {
                     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                     java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="debug">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/NavigationDrawer/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3_ab82ce639efeca3264074a5cd4e18becfa15d2b3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NavigationDrawer/app/build/intermediates/pre-dexed/debug/debug_87c49543ed46b567418ae07e60ece41c7a22bcc7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NavigationDrawer/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3_577574317e44efaf4a072bd65a710cfa2438e5cb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NavigationDrawer/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-21.0.3_d4ef6437c5ceba7284b9320aaa3b15902353eda0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
