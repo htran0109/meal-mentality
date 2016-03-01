@@ -1,3 +1,14 @@
+/**
+ * MealPlanner is the engine that generates the meals based on the restrictions and parameters
+ * given to it. Uses the Spootacular API to retrieve the closest match to the target nutritional
+ * values.
+ *
+ * @author  Chirag Toprani
+ * @author  Hung Tran
+ * @author  Tejas Badadare
+ * @version 1.0
+ */
+
 package edu.ucsd.hack.meal_mentality;
 
 import android.os.AsyncTask;
@@ -9,7 +20,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
-import java.io.Serializable;
+import java.io.Serializable; //For saving to disk
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Calendar;
@@ -28,10 +39,9 @@ public class MealPlanner implements Serializable {
     private double calorieDinnerMult = 0.35;
 
     //Food API Integration
-    String APIbase = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" +
-            "searchComplex?";
-    String APIKey = "unjCf6sRtXmshg2zKOJM5hWAm6HZp1kw7qbjsn8tlrzAmAwNnX";
-    String
+    private String APIbase = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"
+            + "searchComplex?";
+    private String APIKey = "unjCf6sRtXmshg2zKOJM5hWAm6HZp1kw7qbjsn8tlrzAmAwNnX";
     
     private Calendar vals;
     private int date;
@@ -42,29 +52,83 @@ public class MealPlanner implements Serializable {
         index = 0;
     }
 
+    /**
+     * Concatenates several strings into one, with each item delimited by the comma and space
+     * URL encoding characters. Used to interface with Spoontacular API.
+     * @param elements  The Strings to concatenate together
+     * @return  The URL-ready string
+     */
+    public String buildURLFragment(String[] elements) {
+        String ret = "";
 
-    public void designMeal(double calories, int carbs, int protein, int fat, String mealType) {
-        String searchURL = APIbase
-                // Maximum nutrients
-                + "&maxCalories="
+        // Convert array into one long string
+        for (int i = 0; i < elements.length; i++) {
+            ret += elements[i];
+
+            //Delimit items with URL encoding comma and space symbol
+            if (i == elements.length) {
+                ret += "%2C+";
+            }
+        }
+
+        return ret;
+    }
+
+    /**
+     * Calls the Spoontacular API to retrieve a meal that fits the target values as closely as
+     * possible. Deviation: 60% to 120% of target value. Stores this meal into the meals array.
+     *
+     * NOTE: Since this API call combines three other functions, each request counts as 3.
+     *
+     * @param calories  Target calories
+     * @param carbs     Target carbs
+     * @param protein   Target proteins
+     * @param fat       Target fat
+     * @param intolerances      List of intolerances. Possible values: dairy, egg, gluten, peanut,
+     *                          sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat
+     * @param mealType          Type of meal requested. Possible values: breakfast, main+course
+     */
+    public void designMeal(double calories, int carbs, int protein, int fat, String[] intolerances,
+                           String mealType) {
+
+        // Building the API call
+        String searchURL = APIbase;
+
+        // Include intolerances if there are any
+        if (intolerances != null && intolerances.length != 0) {
+            searchURL += "intolerances=" + buildURLFragment(intolerances);
+        }
+
+        // Build rest of URL
+        searchURL +=
+
+                /* MAXIMUM NUTRIENTS */
+                "&maxCalories="
                 + (int) (calories * maxMult)
                 + "&maxCarbs="
                 + (int) (carbs * maxMult)
-                + "&maxFat=100"
+                + "&maxFat="
                 + (int) (fat * maxMult)
-                + "&maxProtein=100"
+                + "&maxProtein="
                 + (int) (protein * maxMult)
 
-                //Minimum nutrients
+                /* MINIMUM NUTRIENTS */
                 + "&minCalories="
                 + (int) (calories * minMult)
-                //+ "&minCarbs=5&minFat=5&minProtein=5" +
+                + "&minCarbs="
+                + (int) (carbs * minMult)
+                + "&minFat="
+                + (int) (fat * minMult)
+                + "&minProtein="
+                + (int) (protein * minMult)
+
+                /* MEAL TYPE */
                 + "&number=1&offset=0&ranking=1&type="
                 + mealType;
 
-                //Intolerances, possible values are:
-                // dairy, egg, gluten, peanut, sesame, seafood, shellfish,
-                // soy, sulfite, tree nut, and wheat.
+        // Debug
+        System.err.println(searchURL);
+
 
         Log.d("JSON", "executing JSON Request");
         new GetHTTP().execute(searchURL);
@@ -82,28 +146,36 @@ public class MealPlanner implements Serializable {
      * @param day       The day to generate a plan for
      * @return          The generated meals in an array
      */
-    public Food[] designMealPlan(int calories, int carbs, int protein, int day) {
+    public Food[] designMealPlan(int calories, int carbs, int protein, int fat,
+                                 String[] intolerances, int day) {
         this.date = day;
         //Design first choices
-        designMeal(calories * calorieBreakfastMult, carbs, protein, "breakfast");
-        designMeal(calories * calorieLunchMult, carbs, protein, "main+course");
-        designMeal(calories * calorieDinnerMult, carbs, protein, "main+course");
+        designMeal(calories * calorieBreakfastMult, carbs, protein, fat, intolerances, "breakfast");
+        designMeal(calories * calorieLunchMult, carbs, protein, fat, intolerances, "main+course");
+        designMeal(calories * calorieDinnerMult, carbs, protein, fat, intolerances, "main+course");
 
         // Design second choices
-        designMeal(calories * calorieBreakfastMult, carbs, protein, "breakfast");
-        designMeal(calories * calorieLunchMult, carbs, protein, "main+course");
-        designMeal(calories * calorieDinnerMult, carbs, protein, "main+course");
+        designMeal(calories * calorieBreakfastMult, carbs, protein, fat, intolerances, "breakfast");
+        designMeal(calories * calorieLunchMult, carbs, protein, fat, intolerances, "main+course");
+        designMeal(calories * calorieDinnerMult, carbs, protein, fat, intolerances, "main+course");
         return meals;
     }
 
     /**
      * Wrapper for full designMealPlan method, for current compatibility.
+     * Uses hardcoded values for carbs, protein, fat, intolerances.
+     *
      * @param calories  Target calories per day
      * @param day       The day to generate a plan for
      * @return          The generated meals in an array
      */
     public Food[] designMealPlan(int calories, int day) {
-        return designMealPlan(calories, 150 /* carbs */, 48 /* protein */, day);
+        // Recommended values from random sites on the internet...
+        int carbs = 150;
+        int protein = 48;
+        int fats = 50;
+
+        return designMealPlan(calories, carbs, protein, fats, null, day);
     }
     
     void add(Food i){
